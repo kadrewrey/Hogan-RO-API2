@@ -1,0 +1,88 @@
+# Hogan RO API v2 - REST Client Tests
+# Use the REST Client extension in VS Code to run these tests
+
+@host = localhost:3000
+@baseUrl = http://{{host}}/api
+@contentType = application/json
+
+### Health Check
+GET http://{{host}}/health
+
+### API Documentation
+GET http://{{host}}/docs
+
+### Register User
+POST {{baseUrl}}/v1/auth/register
+Content-Type: {{contentType}}
+
+{
+  "email": "test@example.com",
+  "password": "password123",
+  "name": "Test User"
+}
+
+### Login User
+POST {{baseUrl}}/v1/auth/login
+Content-Type: {{contentType}}
+
+{
+  "email": "admin@hoganro.com",
+  "password": "admin123"
+}
+
+### Store the token from login response
+@token = {{login.response.body.token}}
+
+### Verify Token
+GET {{baseUrl}}/v1/auth/verify
+Authorization: Bearer {{token}}
+
+### Get Users (requires authentication)
+GET {{baseUrl}}/v1/users
+Authorization: Bearer {{token}}
+
+### Get Roles
+GET {{baseUrl}}/roles
+Authorization: Bearer {{token}}
+
+### Get Permissions
+GET {{baseUrl}}/permissions
+Authorization: Bearer {{token}}
+
+### Get Purchase Orders
+GET {{baseUrl}}/v1/pos
+Authorization: Bearer {{token}}
+
+### Get Suppliers
+GET {{baseUrl}}/v1/suppliers
+Authorization: Bearer {{token}}
+
+### Get Delivery Addresses
+GET {{baseUrl}}/v1/delivery-addresses
+Authorization: Bearer {{token}}
+
+### Get Divisions
+GET {{baseUrl}}/v1/divisions
+Authorization: Bearer {{token}}
+
+### Admin Overview
+GET {{baseUrl}}/v1/admin/overview
+Authorization: Bearer {{token}}
+
+### Create Purchase Order
+POST {{baseUrl}}/v1/pos
+Authorization: Bearer {{token}}
+Content-Type: {{contentType}}
+
+{
+  "order_type": "single",
+  "comments": "Test purchase order",
+  "lines": [
+    {
+      "line_no": 1,
+      "description": "Test item",
+      "qty": 10,
+      "unit_price_cents": 1500
+    }
+  ]
+}
