@@ -15,7 +15,7 @@ A high-performance Fastify-based API for purchase order management, built with T
 
 ## 📋 Prerequisites
 
-- Node.js 18+ 
+- Node.js 18+
 - PostgreSQL 12+
 - AWS S3 (for file storage)
 - npm or yarn
@@ -23,31 +23,35 @@ A high-performance Fastify-based API for purchase order management, built with T
 ## 🛠️ Installation
 
 1. **Clone the repository**
+
    ```bash
    git clone <repository-url>
    cd Hogan-RO-API2
    ```
 
 2. **Install dependencies**
+
    ```bash
    npm install
    ```
 
 3. **Set up environment variables**
+
    ```bash
    cp .env.example .env
    # Edit .env with your configuration
    ```
 
 4. **Set up the database**
+
    ```bash
    # Create database and run schema
    createdb hogan_ro_api
    psql -d hogan_ro_api -f schema.sql
-   
+
    # Run database seeding
    npm run seed
-   
+
    # Set up permissions
    npm run setup-permissions
    ```
@@ -61,19 +65,19 @@ The API will be available at `http://localhost:3000` with documentation at `http
 
 ## 🔧 Environment Variables
 
-| Variable | Description | Default |
-|----------|-------------|---------|
-| `DATABASE_URL` | PostgreSQL connection string | Required |
-| `JWT_SECRET` | JWT signing secret | Required |
-| `JWT_EXPIRES_IN` | JWT token expiration | `24h` |
-| `PORT` | Server port | `3000` |
-| `NODE_ENV` | Environment | `development` |
-| `CORS_ORIGIN` | Allowed CORS origins | `http://localhost:3001` |
-| `LOG_LEVEL` | Logging level | `info` |
-| `AWS_REGION` | AWS region | `us-east-1` |
-| `AWS_ACCESS_KEY_ID` | AWS access key | Optional |
-| `AWS_SECRET_ACCESS_KEY` | AWS secret key | Optional |
-| `AWS_S3_BUCKET` | S3 bucket name | Optional |
+| Variable                | Description                  | Default                 |
+| ----------------------- | ---------------------------- | ----------------------- |
+| `DATABASE_URL`          | PostgreSQL connection string | Required                |
+| `JWT_SECRET`            | JWT signing secret           | Required                |
+| `JWT_EXPIRES_IN`        | JWT token expiration         | `24h`                   |
+| `PORT`                  | Server port                  | `3000`                  |
+| `NODE_ENV`              | Environment                  | `development`           |
+| `CORS_ORIGIN`           | Allowed CORS origins         | `http://localhost:3001` |
+| `LOG_LEVEL`             | Logging level                | `info`                  |
+| `AWS_REGION`            | AWS region                   | `us-east-1`             |
+| `AWS_ACCESS_KEY_ID`     | AWS access key               | Optional                |
+| `AWS_SECRET_ACCESS_KEY` | AWS secret key               | Optional                |
+| `AWS_S3_BUCKET`         | S3 bucket name               | Optional                |
 
 ## 📚 API Documentation
 
@@ -133,6 +137,7 @@ src/
 The system includes a comprehensive RBAC system with the following roles:
 
 ### Roles Hierarchy (by permissions)
+
 1. **Super Admin** - Full system access
 2. **Admin** - Administrative access to most functions
 3. **Manager** - Management level access for operations
@@ -141,6 +146,7 @@ The system includes a comprehensive RBAC system with the following roles:
 6. **Read Only** - View-only access for auditing
 
 ### Permission Categories
+
 - **User Management** - User account operations
 - **Role Management** - Role and permission management
 - **Purchase Orders** - PO lifecycle management
@@ -170,6 +176,7 @@ npm run type-check      # TypeScript type checking
 ### VS Code Integration
 
 The project includes VS Code configuration for:
+
 - **Debugger** - Debug configurations for server and scripts
 - **Extensions** - Recommended extensions for development
 - **Settings** - Optimal editor settings
@@ -182,6 +189,7 @@ Use the included `api-tests.http` file with the REST Client extension to test AP
 ## 📊 Database Schema
 
 The database schema includes:
+
 - **Users & Authentication** - User accounts and JWT integration
 - **Role-Based Access Control** - Roles, permissions, and assignments
 - **Purchase Orders** - Complete PO management with lines
@@ -212,11 +220,13 @@ The database schema includes:
 ## 🐳 Deployment
 
 ### Docker Support (Coming Soon)
+
 ```dockerfile
 # Dockerfile will be provided for containerized deployment
 ```
 
 ### Production Checklist
+
 - [ ] Set strong JWT_SECRET
 - [ ] Configure production database
 - [ ] Set up AWS S3 for file storage
@@ -241,6 +251,7 @@ This project is licensed under the MIT License.
 ## 🆘 Support
 
 For support and questions:
+
 - Check the API documentation at `/docs`
 - Review the test files in `api-tests.http`
 - Open an issue on GitHub
@@ -250,6 +261,7 @@ For support and questions:
 This version replaces the previous Next.js implementation with significant improvements:
 
 ### Key Improvements
+
 - **50%+ Performance Increase** - Fastify vs Next.js API routes
 - **Reduced Memory Usage** - No React/Next.js overhead
 - **Better Error Handling** - Structured error responses
@@ -258,6 +270,7 @@ This version replaces the previous Next.js implementation with significant impro
 - **Faster Cold Starts** - Reduced startup time
 
 ### Breaking Changes
+
 - API routes remain the same (`/api/v1/*`)
 - Authentication flow unchanged
 - Database schema unchanged

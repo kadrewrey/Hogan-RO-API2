@@ -1,7 +1,7 @@
 // lib/auth.ts
 // Authentication and authorization utilities for Fastify
 
-import jwt, { SignOptions } from 'jsonwebtoken';
+import jwt from 'jsonwebtoken';
 import bcrypt from 'bcryptjs';
 import { FastifyRequest } from 'fastify';
 import sql from './db';
@@ -12,7 +12,7 @@ if (!JWT_SECRET) {
   throw new Error('JWT_SECRET environment variable is required');
 }
 
-const JWT_EXPIRES_IN = process.env.JWT_EXPIRES_IN || '24h' as const;
+const JWT_EXPIRES_IN = process.env.JWT_EXPIRES_IN || '24h';
 
 // JWT token utilities
 export function generateToken(user: AuthenticatedUser): string {
@@ -24,8 +24,8 @@ export function generateToken(user: AuthenticatedUser): string {
     division_id: user.division_id,
   };
   
-  const options: SignOptions = { expiresIn: JWT_EXPIRES_IN };
-  return jwt.sign(payload, JWT_SECRET, options);
+  // Cast to avoid TypeScript issues with JWT library
+  return jwt.sign(payload, JWT_SECRET, { expiresIn: JWT_EXPIRES_IN } as any);
 }
 
 export function verifyToken(token: string): any {

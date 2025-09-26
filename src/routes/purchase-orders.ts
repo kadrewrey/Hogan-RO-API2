@@ -3,7 +3,7 @@
 
 import { FastifyInstance, FastifyRequest, FastifyReply } from 'fastify';
 import { z } from 'zod';
-import sql, { withCreateAudit, withUpdateAudit, withSoftDelete } from '../lib/db';
+import sql, { withCreateAudit, withUpdateAudit } from '../lib/db';
 import { requireAuth, requireRole, isValidUUID } from '../lib/auth';
 
 // Validation schemas
@@ -25,24 +25,7 @@ const createPurchaseOrderSchema = z.object({
   })),
 });
 
-const updatePurchaseOrderSchema = z.object({
-  po_number: z.string().min(1).max(100).optional(),
-  supplier_id: z.string().uuid().optional(),
-  status: z.enum(['draft', 'pending', 'approved', 'ordered', 'received', 'cancelled']).optional(),
-  order_date: z.string().transform((str) => new Date(str)).optional(),
-  expected_delivery_date: z.string().transform((str) => new Date(str)).optional(),
-  total_amount: z.number().min(0).optional(),
-  currency: z.string().length(3).optional(),
-  notes: z.string().optional(),
-  items: z.array(z.object({
-    id: z.string().uuid().optional(), // For updating existing items
-    description: z.string().min(1),
-    quantity: z.number().min(1),
-    unit_price: z.number().min(0),
-    total_price: z.number().min(0),
-    notes: z.string().optional(),
-  })).optional(),
-});
+
 
 export async function purchaseOrderRoutes(fastify: FastifyInstance) {
   // Get all purchase orders

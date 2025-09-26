@@ -21,8 +21,8 @@ import { exportRoutes } from './routes/exports'
 import { adminRoutes } from './routes/admin'
 
 // Environment configuration
-const PORT = parseInt(process.env.PORT || '3000')
-const HOST = process.env.HOST || '0.0.0.0'
+const PORT = parseInt(process.env.PORT || '3002')
+const HOST = process.env.HOST || '0.0.0.0' // Bind to all interfaces for better connectivity
 const NODE_ENV = process.env.NODE_ENV || 'development'
 
 const fastify = Fastify({
