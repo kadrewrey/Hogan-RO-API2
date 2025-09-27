@@ -2,22 +2,14 @@
   "version": 2,
   "builds": [
     {
-      "src": "dist/vercel-handler.js",
+      "src": "src/vercel-handler.ts",
       "use": "@vercel/node"
     }
   ],
   "routes": [
     {
       "src": "/(.*)",
-      "dest": "dist/vercel-handler.js"
+      "dest": "src/vercel-handler.ts"
     }
-  ],
-  "env": {
-    "NODE_ENV": "production"
-  },
-  "functions": {
-    "dist/vercel-handler.js": {
-      "maxDuration": 30
-    }
-  }
+  ]
 }
