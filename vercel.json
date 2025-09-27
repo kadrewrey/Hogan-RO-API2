@@ -1,9 +1,21 @@
 {
-  "version": 2,
   "buildCommand": "npm run build",
+  "outputDirectory": "public",
   "rewrites": [
     {
-      "source": "/(.*)",
+      "source": "/health",
+      "destination": "/api"
+    },
+    {
+      "source": "/docs",
+      "destination": "/api"
+    },
+    {
+      "source": "/docs/(.*)",
+      "destination": "/api"
+    },
+    {
+      "source": "/api/(.*)",
       "destination": "/api"
     }
   ]
