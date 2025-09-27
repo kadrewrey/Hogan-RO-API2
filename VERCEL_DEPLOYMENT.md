@@ -1,6 +1,7 @@
 # Vercel Deployment Guide
 
 ## Overview
+
 This project is now configured for deployment on Vercel with a serverless architecture.
 
 ## Files Added/Modified for Vercel
@@ -13,10 +14,12 @@ This project is now configured for deployment on Vercel with a serverless archit
 ## Deployment Steps
 
 ### 1. Prerequisites
+
 - Vercel CLI installed: `npm i -g vercel`
 - Vercel account connected: `vercel login`
 
 ### 2. Environment Variables
+
 Set these environment variables in your Vercel dashboard:
 
 ```bash
@@ -28,6 +31,7 @@ LOG_LEVEL=info
 ```
 
 ### 3. Deploy
+
 ```bash
 # Build first
 npm run build
@@ -40,7 +44,9 @@ vercel --prod
 ```
 
 ### 4. Update CORS Origins
+
 Once deployed, update your `CORS_ORIGIN` environment variable to include your Vercel domain:
+
 ```
 CORS_ORIGIN=https://your-frontend-domain.com,https://your-api-domain.vercel.app
 ```
