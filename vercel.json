@@ -1,15 +1,10 @@
 {
   "version": 2,
-  "builds": [
+  "buildCommand": "npm run build",
+  "rewrites": [
     {
-      "src": "src/vercel-handler.ts",
-      "use": "@vercel/node"
-    }
-  ],
-  "routes": [
-    {
-      "src": "/(.*)",
-      "dest": "src/vercel-handler.ts"
+      "source": "/(.*)",
+      "destination": "/api"
     }
   ]
 }

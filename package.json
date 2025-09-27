@@ -4,6 +4,7 @@
   "description": "Hogan Purchase Order API - Fastify Edition",
   "main": "dist/server.js",
   "type": "module",
+
   "scripts": {
     "dev": "tsx watch src/server.ts",
     "build": "tsc",
