@@ -1,5 +1,4 @@
 {
-  "buildCommand": "npm run build",
   "outputDirectory": "public",
   "rewrites": [
     {
@@ -12,6 +11,10 @@
     },
     {
       "source": "/docs/(.*)",
+      "destination": "/api"
+    },
+    {
+      "source": "/api",
       "destination": "/api"
     },
     {
