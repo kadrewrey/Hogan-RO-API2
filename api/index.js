@@ -138,7 +138,21 @@ export default async function handler(req, res) {
       console.log('Fastify app ready');
     }
     
-    return app.server(req, res);
+    // Use Fastify's inject method for serverless functions
+    const response = await app.inject({
+      method: req.method,
+      url: req.url,
+      headers: req.headers,
+      payload: req.method !== 'GET' && req.method !== 'HEAD' ? req.body : undefined,
+    });
+
+    // Set response headers
+    Object.keys(response.headers).forEach((key) => {
+      res.setHeader(key, response.headers[key]);
+    });
+
+    // Set status and send response
+    res.status(response.statusCode).send(response.payload);
   } catch (error) {
     console.error('Handler error:', error);
     res.status(500).json({
